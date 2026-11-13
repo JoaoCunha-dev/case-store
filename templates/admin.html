@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block body %}<main>
+<div class="row" style="border:0"><h1>Painel do administrador</h1><span style="display:flex;gap:8px">
+<a class="btn" href="{{ url_for('loja') }}" target="_blank">Ver catálogo</a><a class="btn sec" href="{{ url_for('logout') }}">Sair</a></span></div>
+<h2>Cadastrar produto</h2>
+<form class="f" method="post">
+<label>Nome<input name="nome" required></label><label>Descrição<textarea name="descricao" rows="3"></textarea></label>
+<label>Preço (R$)<input name="preco" required inputmode="decimal"></label><label>URL da imagem<input type="url" name="imagem"></label>
+<label>Categoria<input name="categoria"></label>
+{% for c, m in get_flashed_messages(with_categories=true) %}<p class="{{ c }}">{{ m }}</p>{% endfor %}
+<button>Cadastrar produto</button></form>
+<h2>Produtos cadastrados ({{ lista|length }})</h2>
+{% for p in lista %}<div class="row"><span>{{ p.nome }} <span class="mut">R$ {{ '%.2f'|format(p.preco) }}</span></span>
+<form method="post" action="{{ url_for('excluir', pid=p._id) }}"><button class="sec">Excluir</button></form></div>{% endfor %}
+</main>{% endblock %}

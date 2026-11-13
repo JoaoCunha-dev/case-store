@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block body %}<main><h1>Entrar no painel</h1>
+<form class="f" method="post"><label>E-mail<input type="email" name="email" required></label>
+<label>Senha<input type="password" name="senha" required></label>
+{% for c, m in get_flashed_messages(with_categories=true) %}<p class="{{ c }}">{{ m }}</p>{% endfor %}
+<button>Entrar</button><a href="{{ url_for('loja') }}">Voltar à loja</a></form></main>{% endblock %}

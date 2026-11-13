@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block body %}
+<header><h1>{{ loja_nome }}</h1><span style="display:flex;gap:8px">
+<a class="btn sec" href="{{ url_for('login') }}">Área do admin</a><button id="abrir">Carrinho (<span id="qtd">0</span>)</button></span></header>
+<main>
+<section id="sec-rec" hidden><h2>Vistos recentemente</h2><div class="grid" id="recentes"></div></section>
+<h2>Catálogo</h2><p class="mut" id="status">Carregando produtos…</p><div class="grid" id="catalogo"></div>
+</main>
+<div class="modal" id="modal" hidden><div><div id="detalhe"></div></div></div>
+<aside class="side" id="side" hidden>
+<div class="row" style="border:0"><h2 style="margin:0">Seu carrinho</h2><button class="sec" id="fechar">Fechar</button></div>
+<div id="itens"></div><h2>Total: <span id="total">R$ 0,00</span></h2><button id="comprar" disabled>Comprar pelo WhatsApp</button></aside>
+<script>window.WHATSAPP="{{ whatsapp }}";</script><script src="{{ url_for('static', filename='loja.js') }}"></script>
+{% endblock %}
